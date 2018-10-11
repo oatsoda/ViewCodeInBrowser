@@ -68,7 +68,8 @@ namespace ViewCodeInBrowser
             var tfsServerName = vceExp.Workspace.VersionControlServer.TeamProjectCollection.Uri;
             var localPath = vceExp.Workspace.Folders[0].LocalItem;
             var serverPath = vceExp.Workspace.Folders[0].ServerItem;
-            var basePath = $"{tfsServerName}{serverPath.Substring(1)}";
+            var serverProjectName = serverPath.Substring(1).TrimStart('/').Split('/').First(); // Path starts with $ and first folder is the VSTS "Project"
+            var basePath = $"{tfsServerName}/{serverProjectName}";
             
             var selectedFileNames = GetSelectedFileNames();
 
