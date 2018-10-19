@@ -21,6 +21,17 @@
         </Strings>
 
       </Button>
+
+      <Button guid="guidOpenInBrowserPackageCmdSet" id="CopyLinkId" priority="0x0101" type="Button">
+
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+
+        <Strings>
+          <ButtonText>Copy Link To Code</ButtonText>
+        </Strings>
+
+      </Button>
     </Buttons>
 
   </Commands>
@@ -77,6 +88,9 @@
     <CommandPlacement guid="guidOpenInBrowserPackageCmdSet" id="OpenInBrowserId" priority="0x0001" >
       <Parent guid="guidOpenInBrowserPackageCmdSet" id="EditorContextMenuGroup"/>
     </CommandPlacement>
+    <CommandPlacement guid="guidOpenInBrowserPackageCmdSet" id="CopyLinkId" priority="0x0002" >
+      <Parent guid="guidOpenInBrowserPackageCmdSet" id="EditorContextMenuGroup"/>
+    </CommandPlacement>
 
   </CommandPlacements>
 
@@ -89,6 +103,7 @@
     <GuidSymbol name="guidOpenInBrowserPackageCmdSet" value="{b22ddadb-6c6f-4428-9fc3-ccd57538c899}">
       <IDSymbol name="EditorContextMenuGroup" value="0x1020" />
       <IDSymbol name="OpenInBrowserId" value="0x0100" />
+      <IDSymbol name="CopyLinkId" value="0x0101" />
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{6b3d5b21-b5d3-4d51-b7ac-aab49c7c7dc2}" >

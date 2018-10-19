@@ -54,6 +54,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CopyLink.cs" />
     <Compile Include="OpenInBrowser.cs" />
     <Compile Include="OpenInBrowserPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

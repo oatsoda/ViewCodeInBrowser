@@ -37,6 +37,7 @@ namespace ViewCodeInBrowser
         protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             await OpenInBrowser.CreateAndInitializeAsync(this);
+            await CopyLink.CreateAndInitializeAsync(this);
             await base.InitializeAsync(cancellationToken, progress);
         }
 
