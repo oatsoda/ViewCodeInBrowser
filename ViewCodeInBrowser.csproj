@@ -55,6 +55,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CopyLink.cs" />
+    <Compile Include="BaseCommand.cs" />
     <Compile Include="OpenInBrowser.cs" />
     <Compile Include="OpenInBrowserPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
