@@ -28,6 +28,8 @@ namespace ViewCodeInBrowser
             if (!(await m_ServiceProvider.GetServiceAsync(typeof(IMenuCommandService)) is OleMenuCommandService commandService))
                 return;
 
+            //System.Reflection.Assembly.LoadFile(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\Microsoft.VisualStudio.TeamFoundation.VersionControl.dll"));
+
             // Would be better to lazy initialise this but need to fully understand the VS threading stuff first
             // https://docs.microsoft.com/en-us/visualstudio/extensibility/how-to-use-asyncpackage-to-load-vspackages-in-the-background?view=vs-2017#querying-services-from-asyncpackage
             m_Dte = (EnvDTE80.DTE2) await m_ServiceProvider.GetServiceAsync(typeof(DTE));
@@ -54,9 +56,15 @@ namespace ViewCodeInBrowser
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            m_Dte.ExecuteCommand("View.TfsSourceControlExplorer");
             var vce = (VersionControlExt)m_Dte.GetObject("Microsoft.VisualStudio.TeamFoundation.VersionControl.VersionControlExt");
             var vceExp = vce.Explorer;
+
+            if (vceExp.Workspace == null)
+            {
+                var d = m_Dte.ActiveDocument;
+                m_Dte.ExecuteCommand("View.TfsSourceControlExplorer");
+                d?.Activate();
+            }
             
             var tfsServerName = vceExp.Workspace.VersionControlServer.TeamProjectCollection.Uri;
             var localPath = vceExp.Workspace.Folders[0].LocalItem;
@@ -75,7 +83,7 @@ namespace ViewCodeInBrowser
                 var codeUrl = $"{basePath}/_versionControl?path={pathParameter}";
 
                 CodeUrlAction(codeUrl);
-            }
+            }            
         }
 
         private void MenuItemOnBeforeQueryStatus(object sender, EventArgs e)

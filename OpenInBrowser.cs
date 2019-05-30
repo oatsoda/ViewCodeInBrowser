@@ -26,7 +26,7 @@ namespace ViewCodeInBrowser
 
         protected override void CodeUrlAction(string codeUrl)
         {
-            System.Diagnostics.Process.Start(codeUrl);
+            System.Threading.Tasks.Task.Run(() => System.Diagnostics.Process.Start(codeUrl));
         }
     }
 }
