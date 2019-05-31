@@ -57,18 +57,11 @@ namespace ViewCodeInBrowser
         private void MenuItemCallback(object sender, EventArgs e)
         {
             var vce = (VersionControlExt)m_Dte.GetObject("Microsoft.VisualStudio.TeamFoundation.VersionControl.VersionControlExt");
-            var vceExp = vce.Explorer;
-
-            if (vceExp.Workspace == null)
-            {
-                var d = m_Dte.ActiveDocument;
-                m_Dte.ExecuteCommand("View.TfsSourceControlExplorer");
-                d?.Activate();
-            }
-            
-            var tfsServerName = vceExp.Workspace.VersionControlServer.TeamProjectCollection.Uri;
-            var localPath = vceExp.Workspace.Folders[0].LocalItem;
-            var serverPath = vceExp.Workspace.Folders[0].ServerItem;
+            var workspace = vce.SolutionWorkspace;
+                        
+            var tfsServerName = workspace.VersionControlServer.TeamProjectCollection.Uri;
+            var localPath = workspace.Folders[0].LocalItem;
+            var serverPath = workspace.Folders[0].ServerItem;
             var serverProjectName = serverPath.Substring(1).TrimStart('/').Split('/').First(); // Path starts with $ and first folder is the VSTS "Project"
             var basePath = $"{tfsServerName}/{serverProjectName}";
             
