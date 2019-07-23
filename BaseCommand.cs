@@ -95,10 +95,14 @@ namespace ViewCodeInBrowser
             if (selectedItemFileNames.Count > MaxSelectedItems)
                 return;
 
+            // If not items, don't show the menu item
+            if (selectedItemFileNames.Count == 0)
+                return;
+
 #pragma warning disable VSTHRD010 // Invoke single-threaded types on Main thread - checked above and Any executes immediately on same thread
 
             // If any of the items selected are not under SC then don't show the menu item
-            if (selectedItemFileNames.Any(f => !m_Dte.SourceControl.IsItemUnderSCC(f)))
+            if (selectedItemFileNames.Any(f => !m_Dte.SourceControl.IsSourceControlled(f)))
                 return;
 
 #pragma warning restore VSTHRD010 // Invoke single-threaded types on Main thread
@@ -138,6 +142,7 @@ namespace ViewCodeInBrowser
 
 #pragma warning restore VSTHRD010 // Invoke single-threaded types on Main thread
                 })
+                .Where(f => f != null)
                 .ToList();
         }
 

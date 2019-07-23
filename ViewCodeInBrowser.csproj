@@ -60,6 +60,7 @@
     <Compile Include="OpenInBrowser.cs" />
     <Compile Include="OpenInBrowserPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SourceControlExtensions.cs" />
     <Compile Include="ViewCodeInBrowserPackage.cs" />
   </ItemGroup>
   <ItemGroup>

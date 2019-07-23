@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="ViewCodeInBrowser.6e00bac9-6f1f-4a18-95e0-10119537c992" Version="1.0.3" Language="en-US" Publisher="Andrew Milne" />
+        <Identity Id="ViewCodeInBrowser.6e00bac9-6f1f-4a18-95e0-10119537c992" Version="1.0.5" Language="en-US" Publisher="Andrew Milne" />
         <DisplayName>ViewCodeInBrowser</DisplayName>
         <Description xml:space="preserve">Adds a menu item to view DevOps (VSTS) source controlled in the DevOps Web UI</Description>
     </Metadata>
