@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using EnvDTE;
+using Microsoft;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TeamFoundation.VersionControl;
 
@@ -33,6 +34,7 @@ namespace ViewCodeInBrowser
             // Would be better to lazy initialise this but need to fully understand the VS threading stuff first
             // https://docs.microsoft.com/en-us/visualstudio/extensibility/how-to-use-asyncpackage-to-load-vspackages-in-the-background?view=vs-2017#querying-services-from-asyncpackage
             m_Dte = (EnvDTE80.DTE2) await m_ServiceProvider.GetServiceAsync(typeof(DTE));
+            Assumes.Present(m_Dte);
 
             var menuCommandId = new CommandID(CommandSet, CommandId);
             var menuItem = new OleMenuCommand(MenuItemCallback, menuCommandId);
@@ -81,7 +83,7 @@ namespace ViewCodeInBrowser
 
         private void MenuItemOnBeforeQueryStatus(object sender, EventArgs e)
         {
-            ThreadHelper.ThrowIfNotOnUIThread(nameof(GetSelectedFileNames));
+            ThreadHelper.ThrowIfNotOnUIThread(nameof(MenuItemOnBeforeQueryStatus));
 
             if (!(sender is OleMenuCommand menuCommand))
                 return;

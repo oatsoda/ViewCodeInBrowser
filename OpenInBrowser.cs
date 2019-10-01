@@ -26,7 +26,9 @@ namespace ViewCodeInBrowser
 
         protected override void CodeUrlAction(string codeUrl)
         {
+#pragma warning disable VSTHRD110 // Observe result of async calls
             System.Threading.Tasks.Task.Run(() => System.Diagnostics.Process.Start(codeUrl));
+#pragma warning restore VSTHRD110 // Observe result of async calls
         }
     }
 }
